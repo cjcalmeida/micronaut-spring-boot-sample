@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    username: SA
+    url: jdbc:h2:mem:movieDb
+datasources:
+  default:
+    url: jdbc:h2:mem:movieDb
+    username: SA

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>cristiano.estudos</groupId>
+	<artifactId>micronaut-spring-boot-data-services</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>micronaut-spring-boot-data-services</name>
+	<description>Sample Study to run spring app with micronaut</description>
+
+	<properties>
+		<java.version>11</java.version>
+		<micronaut.version>1.1.1</micronaut.version>
+		<micronaut.spring.version>1.0.1</micronaut.spring.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- Micronaut -->
+
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-inject</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-validation</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-runtime</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-server-netty</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-http-client</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut.configuration</groupId>
+			<artifactId>micronaut-openapi</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut.configuration</groupId>
+			<artifactId>micronaut-jdbc-hikari</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-inject-java</artifactId>
+			<version>${micronaut.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut.spring</groupId>
+			<artifactId>micronaut-spring-web</artifactId>
+			<version>${micronaut.spring.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micronaut.spring</groupId>
+			<artifactId>micronaut-spring-annotation</artifactId>
+			<version>${micronaut.spring.version}</version>
+		</dependency>
+
+		<!-- Metrics -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		-->
+		<!-- Web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+		</dependency>
+
+		<!-- Database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-core</artifactId>
+			<version>3.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-spring4</artifactId>
+			<version>3.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-sqlobject</artifactId>
+			<version>3.9.0</version>
+		</dependency>
+
+		<!-- Tests -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+						</goals>
+						<phase>install</phase>
+						<configuration>
+							<tag>${project.version}</tag>
+							<dockerfile>Dockerfile</dockerfile>
+							<repository>cristiano/estudos-${project.name}</repository>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<encoding>UTF-8</encoding>
+						<compilerArgs>
+							<arg>-parameters</arg>
+						</compilerArgs>
+						<annotationProcessorPaths>
+							<path>
+								<groupId>io.micronaut</groupId>
+								<artifactId>micronaut-inject-java</artifactId>
+								<version>${micronaut.version}</version>
+							</path>
+							<path>
+								<groupId>io.micronaut</groupId>
+								<artifactId>micronaut-validation</artifactId>
+								<version>${micronaut.version}</version>
+							</path>
+							<path>
+								<groupId>io.micronaut.configuration</groupId>
+								<artifactId>micronaut-openapi</artifactId>
+								<version>${micronaut.version}</version>
+							</path>
+							<path>
+								<groupId>io.micronaut.spring</groupId>
+								<artifactId>micronaut-spring-boot-annotation</artifactId>
+								<version>${micronaut.spring.version}</version>
+							</path>
+							<path>
+								<groupId>io.micronaut.spring</groupId>
+								<artifactId>micronaut-spring-web-annotation</artifactId>
+								<version>${micronaut.spring.version}</version>
+							</path>
+						</annotationProcessorPaths>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
