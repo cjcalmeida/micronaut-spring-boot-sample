@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cristiano.estudos</groupId>
-	<artifactId>micronaut-spring-boot-data-services</artifactId>
+	<artifactId>micronaut-spring-boot-sample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>micronaut-spring-boot-data-services</name>
+	<name>micronaut-spring-boot-sample</name>
 	<description>Sample Study to run spring app with micronaut</description>
 
 	<properties>
