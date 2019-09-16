@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StopWatch;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -23,8 +22,6 @@ public class MovieService {
 
     private Logger log = LoggerFactory.getLogger(MovieService.class);
 
-    private StopWatch timer = new StopWatch();
-
     private boolean isInitialized = false;
 
     @Autowired
@@ -34,10 +31,7 @@ public class MovieService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void createMovie(List<Movie> movies) {
-        timer.start("create-query");
         repository.createMovies(movies);
-        timer.stop();
-        log.info("Tempo gasto na execução da query {}: {}ms", timer.getLastTaskName(), timer.getLastTaskTimeMillis());
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -45,25 +39,16 @@ public class MovieService {
         if(movie.getId() == null || movie.getId() < 0) {
             throw new IllegalArgumentException("Invalid value for ID");
         }
-        timer.start("update-query");
         repository.updateMovie(movie);
-        timer.stop();
-        log.info("Tempo gasto na execução da query {}: {}ms", timer.getLastTaskName(), timer.getLastTaskTimeMillis());
     }
 
     public Movie getMovie(Integer idMovie) throws MovieNotFoundException {
-        timer.start("get-movie-query");
         Optional<Movie> dbMovie = repository.getMovie(idMovie);
-        timer.stop();
-        log.info("Tempo gasto na execução da query {}: {}ms", timer.getLastTaskName(), timer.getLastTaskTimeMillis());
         return dbMovie.orElseThrow(() -> new MovieNotFoundException());
     }
 
     public List<Movie> listAll() {
-        timer.start("list-query");
         List<Movie> movies = repository.listAllMovies();
-        timer.stop();
-        log.info("Tempo gasto na execução da query {}: {}ms", timer.getLastTaskName(), timer.getLastTaskTimeMillis());
 
         return movies;
     }

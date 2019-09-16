@@ -1,8 +1,20 @@
 spring:
+  jmx:
+    enabled: false
   datasource:
+    hikari:
+      maximum-pool-size: 3
     username: SA
     url: jdbc:h2:mem:movieDb
+server:
+  tomcat:
+    max-connections: 10
+    max-threads: 10
+    min-spare-threads: 1
 datasources:
   default:
     url: jdbc:h2:mem:movieDb
     username: SA
+logging:
+  level:
+    root: info

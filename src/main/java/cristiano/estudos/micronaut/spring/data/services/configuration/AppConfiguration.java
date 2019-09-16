@@ -5,6 +5,9 @@ import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.jdbi.v3.core.spi.JdbiPlugin;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +61,18 @@ public class AppConfiguration {
                 .title("Movie Api")
                 .version("1.0.0")
                 .build());
+    }
+
+    @Bean
+    public BeanFactoryPostProcessor postProcessorBean(){
+        return new BeanFactoryPostProcessor() {
+            @Override
+            public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
+                for(String beanName : configurableListableBeanFactory.getBeanDefinitionNames()) {
+                    configurableListableBeanFactory.getBeanDefinition(beanName).setLazyInit(true);
+                }
+            }
+        };
     }
 
 }

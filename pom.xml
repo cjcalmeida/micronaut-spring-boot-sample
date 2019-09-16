@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>cristiano.estudos</groupId>
 	<artifactId>micronaut-spring-boot-sample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>micronaut-spring-boot-sample</name>
 	<description>Sample Study to run spring app with micronaut</description>
 
@@ -229,6 +229,6 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	</build>
 
+	</build>
 </project>
