@@ -1,4 +1,5 @@
 FROM adoptopenjdk:11-jre-openj9
+# FROM openjdk:11-jre-slim
 EXPOSE 8080 9091
 CMD java $JAVA_OPTS -Dcom.sun.management.jmxremote \
                     -Dcom.sun.management.jmxremote.rmi.port=9091 \
