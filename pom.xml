@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<micronaut.version>2.5.9</micronaut.version>
+		<micronaut.version>3.8.3</micronaut.version>
 		<micronaut.spring.version>1.0.1</micronaut.spring.version>
 	</properties>
 
